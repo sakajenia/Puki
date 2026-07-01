@@ -105,10 +105,8 @@ const styles = StyleSheet.create({
   },
   form: { gap: spacing.md },
   input: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.bgSubtle,
     borderRadius: radius.md,
-    borderWidth: 1,
-    borderColor: colors.border,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.md,
     fontSize: 18,

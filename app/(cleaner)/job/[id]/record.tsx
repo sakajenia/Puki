@@ -246,7 +246,7 @@ export default function RecordFlow() {
         <View style={[styles.previewActions, { paddingBottom: insets.bottom + spacing.md }]}>
           <BigButton
             label="↺ Redo"
-            variant="danger"
+            variant="neutral"
             onPress={redo}
             style={styles.flexBtn}
           />

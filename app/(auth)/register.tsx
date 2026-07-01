@@ -150,13 +150,13 @@ const styles = StyleSheet.create({
   roleCard: {
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
-    borderWidth: 2,
+    borderWidth: 1.5,
     borderColor: colors.border,
     padding: spacing.md,
   },
   roleCardSelected: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primary + "0D",
+    borderColor: colors.text,
+    backgroundColor: colors.bgSubtle,
   },
   roleEmoji: { fontSize: 30 },
   roleTitle: {
@@ -168,10 +168,8 @@ const styles = StyleSheet.create({
   roleSubtitle: { fontSize: 14, color: colors.textMuted, marginTop: 2 },
   form: { gap: spacing.md },
   input: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.bgSubtle,
     borderRadius: radius.md,
-    borderWidth: 1,
-    borderColor: colors.border,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.md,
     fontSize: 18,

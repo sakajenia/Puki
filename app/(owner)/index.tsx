@@ -13,7 +13,7 @@ import { BigButton } from "@/components/BigButton";
 import { StatusBadge } from "@/components/StatusBadge";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
-import { colors, radius, spacing } from "@/lib/theme";
+import { colors, radius, shadow, spacing } from "@/lib/theme";
 import type { JobWithProperty } from "@/lib/types";
 
 export default function OwnerHome() {
@@ -111,8 +111,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
     padding: spacing.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
+    ...shadow.card,
   },
   pressed: { opacity: 0.85 },
   cardTitle: { fontSize: 20, fontWeight: "800", color: colors.text },
