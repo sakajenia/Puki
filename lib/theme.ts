@@ -1,23 +1,31 @@
 /**
- * Design system — modern iOS look inspired by Airbnb: warm white surfaces,
- * a single bold accent, soft shadows instead of hard borders, pill buttons,
- * oversized friendly typography. Cleaner-facing screens keep huge tap targets.
+ * Design system — dark, high-tech fintech look with glassmorphism:
+ * deep space background with a violet glow, translucent frosted cards,
+ * neon violet→cyan gradient CTAs, light text. Cleaner-facing screens keep
+ * huge tap targets and one decision per screen.
  */
 export const colors = {
-  bg: "#FFFFFF",
-  bgSubtle: "#F7F7F7",
-  surface: "#FFFFFF",
-  text: "#222222",
-  textMuted: "#717171",
-  primary: "#FF385C",
-  primaryDark: "#E31C5F",
-  success: "#0A8A3C",
-  danger: "#C13515",
-  warning: "#B45309",
-  border: "#EBEBEB",
-  recording: "#FF385C",
+  bg: "#07070D",
+  bgSubtle: "rgba(255,255,255,0.06)",
+  surface: "rgba(255,255,255,0.07)",
+  text: "#F4F5FF",
+  textMuted: "#8E93B3",
+  primary: "#8B5CF6",
+  primaryDark: "#6D28D9",
+  accent: "#22D3EE",
+  success: "#34D399",
+  danger: "#FB7185",
+  warning: "#FBBF24",
+  border: "rgba(255,255,255,0.14)",
+  recording: "#FB7185",
   overlay: "rgba(0,0,0,0.85)",
 };
+
+/** Background gradient (top → bottom) used behind the main screens. */
+export const bgGradient = ["#16102E", "#0B0A18", "#07070D"] as const;
+
+/** Neon gradient for primary CTAs (left → right). */
+export const ctaGradient = ["#8B5CF6", "#6366F1", "#22D3EE"] as const;
 
 export const radius = {
   sm: 10,
@@ -34,20 +42,20 @@ export const spacing = {
   xl: 36,
 };
 
-/** Soft elevation used on cards and floating CTAs (iOS shadow + Android elevation). */
+/** Neon glow used on cards and the primary CTA. */
 export const shadow = {
   card: {
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.08,
-    shadowRadius: 16,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.45,
+    shadowRadius: 20,
+    elevation: 6,
   },
   button: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.12,
-    shadowRadius: 10,
-    elevation: 3,
+    shadowColor: "#8B5CF6",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.45,
+    shadowRadius: 16,
+    elevation: 6,
   },
 } as const;

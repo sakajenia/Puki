@@ -10,6 +10,7 @@ import {
 import { useFocusEffect, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BigButton } from "@/components/BigButton";
+import { GradientBG } from "@/components/GradientBG";
 import { StatusBadge } from "@/components/StatusBadge";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
@@ -42,6 +43,7 @@ export default function OwnerHome() {
   );
 
   return (
+    <GradientBG>
     <View style={[styles.flex, { paddingTop: insets.top + spacing.md }]}>
       <View style={styles.header}>
         <View>
@@ -91,11 +93,12 @@ export default function OwnerHome() {
         />
       </View>
     </View>
+    </GradientBG>
   );
 }
 
 const styles = StyleSheet.create({
-  flex: { flex: 1, backgroundColor: colors.bg },
+  flex: { flex: 1 },
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -111,6 +114,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
     padding: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
     ...shadow.card,
   },
   pressed: { opacity: 0.85 },
@@ -132,8 +137,5 @@ const styles = StyleSheet.create({
   footer: {
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.sm,
-    borderTopWidth: 1,
-    borderTopColor: colors.border,
-    backgroundColor: colors.bg,
   },
 });

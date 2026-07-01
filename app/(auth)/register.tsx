@@ -12,6 +12,7 @@ import {
 import { Link } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BigButton } from "@/components/BigButton";
+import { GradientBG } from "@/components/GradientBG";
 import { useAuth } from "@/lib/auth";
 import { colors, radius, spacing } from "@/lib/theme";
 import type { Role } from "@/lib/types";
@@ -57,6 +58,7 @@ export default function Register() {
   }
 
   return (
+    <GradientBG>
     <KeyboardAvoidingView
       style={styles.flex}
       behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -124,11 +126,12 @@ export default function Register() {
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
+    </GradientBG>
   );
 }
 
 const styles = StyleSheet.create({
-  flex: { flex: 1, backgroundColor: colors.bg },
+  flex: { flex: 1 },
   container: {
     flexGrow: 1,
     paddingHorizontal: spacing.lg,
@@ -155,8 +158,8 @@ const styles = StyleSheet.create({
     padding: spacing.md,
   },
   roleCardSelected: {
-    borderColor: colors.text,
-    backgroundColor: colors.bgSubtle,
+    borderColor: colors.primary,
+    backgroundColor: "rgba(139,92,246,0.14)",
   },
   roleEmoji: { fontSize: 30 },
   roleTitle: {

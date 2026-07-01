@@ -15,6 +15,7 @@ import {
 } from "expo-camera";
 import { BigButton } from "@/components/BigButton";
 import { ClipPreview } from "@/components/ClipPreview";
+import { GradientBG } from "@/components/GradientBG";
 import { ProgressDots } from "@/components/ProgressDots";
 import { MAX_CLIP_SECONDS } from "@/lib/constants";
 import { supabase } from "@/lib/supabase";
@@ -185,9 +186,11 @@ export default function RecordFlow() {
 
   if (phase === "loading") {
     return (
+      <GradientBG>
       <View style={styles.center}>
         <ActivityIndicator size="large" color={colors.primary} />
       </View>
+      </GradientBG>
     );
   }
 
@@ -263,24 +266,29 @@ export default function RecordFlow() {
 
   if (phase === "saving") {
     return (
+      <GradientBG>
       <View style={styles.center}>
         <ActivityIndicator size="large" color={colors.primary} />
         <Text style={styles.savingText}>Saving…</Text>
       </View>
+      </GradientBG>
     );
   }
 
   if (phase === "saved") {
     return (
+      <GradientBG>
       <View style={styles.center}>
         <Text style={styles.bigCheck}>✅</Text>
         <Text style={styles.savedText}>Saved!</Text>
       </View>
+      </GradientBG>
     );
   }
 
   if (phase === "finished") {
     return (
+      <GradientBG>
       <View style={[styles.center, { padding: spacing.lg }]}>
         <Text style={styles.bigCheck}>🎉</Text>
         <Text style={styles.finTitle}>All areas recorded!</Text>
@@ -297,11 +305,13 @@ export default function RecordFlow() {
           />
         </View>
       </View>
+      </GradientBG>
     );
   }
 
   // phase === "intro"
   return (
+    <GradientBG>
     <View style={[styles.introWrap, { paddingTop: insets.top + spacing.lg }]}>
       <View style={styles.introTop}>
         <Pressable onPress={() => router.replace("/(cleaner)")} hitSlop={10}>
@@ -326,6 +336,7 @@ export default function RecordFlow() {
         <BigButton label="🎥 Record this area" onPress={openCamera} />
       </View>
     </View>
+    </GradientBG>
   );
 }
 
@@ -334,14 +345,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.bg,
   },
   savingText: { marginTop: spacing.md, fontSize: 18, color: colors.textMuted },
   bigCheck: { fontSize: 90 },
   savedText: { fontSize: 28, fontWeight: "800", color: colors.success },
 
   // Intro
-  introWrap: { flex: 1, backgroundColor: colors.bg, paddingHorizontal: spacing.lg },
+  introWrap: { flex: 1, paddingHorizontal: spacing.lg },
   introTop: { gap: spacing.lg },
   close: { color: colors.textMuted, fontSize: 16, fontWeight: "600" },
   introBody: { flex: 1, justifyContent: "center", alignItems: "center" },

@@ -11,6 +11,7 @@ import {
 import { Link } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BigButton } from "@/components/BigButton";
+import { GradientBG } from "@/components/GradientBG";
 import { useAuth } from "@/lib/auth";
 import { colors, radius, spacing } from "@/lib/theme";
 
@@ -36,6 +37,7 @@ export default function Login() {
   }
 
   return (
+    <GradientBG>
     <KeyboardAvoidingView
       style={styles.flex}
       behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -80,11 +82,12 @@ export default function Login() {
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
+    </GradientBG>
   );
 }
 
 const styles = StyleSheet.create({
-  flex: { flex: 1, backgroundColor: colors.bg },
+  flex: { flex: 1 },
   container: {
     flexGrow: 1,
     paddingHorizontal: spacing.lg,
