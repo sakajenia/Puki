@@ -16,6 +16,8 @@ import {
 import { BigButton } from "@/components/BigButton";
 import { ClipPreview } from "@/components/ClipPreview";
 import { GradientBG } from "@/components/GradientBG";
+import { IconTile } from "@/components/IconTile";
+import { areaEmoji } from "@/lib/areaEmoji";
 import { ProgressDots } from "@/components/ProgressDots";
 import { MAX_CLIP_SECONDS } from "@/lib/constants";
 import { supabase } from "@/lib/supabase";
@@ -321,8 +323,9 @@ export default function RecordFlow() {
       </View>
 
       <View style={styles.introBody}>
+        <IconTile glyph={areaEmoji(area?.area_name ?? "")} size={96} />
         <Text style={styles.stepLabel}>
-          Step {index + 1} of {areas.length}
+          STEP {index + 1} OF {areas.length}
         </Text>
         <Text style={styles.areaName}>{area?.area_name}</Text>
         <Text style={styles.instruction}>
@@ -354,12 +357,13 @@ const styles = StyleSheet.create({
   introWrap: { flex: 1, paddingHorizontal: spacing.lg },
   introTop: { gap: spacing.lg },
   close: { color: colors.textMuted, fontSize: 16, fontWeight: "600" },
-  introBody: { flex: 1, justifyContent: "center", alignItems: "center" },
+  introBody: { flex: 1, justifyContent: "center", alignItems: "center", gap: spacing.sm },
   stepLabel: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: colors.primary,
-    marginBottom: spacing.sm,
+    fontSize: 14,
+    fontWeight: "800",
+    letterSpacing: 2.5,
+    color: colors.accent,
+    marginTop: spacing.md,
   },
   areaName: {
     fontSize: 46,

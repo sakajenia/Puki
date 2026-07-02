@@ -12,7 +12,9 @@ import { useLocalSearchParams } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { BigButton } from "@/components/BigButton";
+import { IconTile } from "@/components/IconTile";
 import { StatusBadge } from "@/components/StatusBadge";
+import { areaEmoji } from "@/lib/areaEmoji";
 import { supabase } from "@/lib/supabase";
 import { colors, radius, spacing } from "@/lib/theme";
 import { getSignedVideoUrl } from "@/lib/upload";
@@ -112,11 +114,11 @@ export default function OwnerJobReview() {
                 ]}
               >
                 <View style={styles.areaLeft}>
-                  <Text style={styles.areaIcon}>{done ? "▶️" : "⏳"}</Text>
+                  <IconTile glyph={areaEmoji(a.area_name)} size={40} />
                   <Text style={styles.areaName}>{a.area_name}</Text>
                 </View>
                 <Text style={done ? styles.watch : styles.pending}>
-                  {done ? "Watch" : "Not yet"}
+                  {done ? "▶ Watch" : "Not yet"}
                 </Text>
               </Pressable>
             );
@@ -220,7 +222,6 @@ const styles = StyleSheet.create({
   },
   pressed: { opacity: 0.7 },
   areaLeft: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
-  areaIcon: { fontSize: 20 },
   areaName: { fontSize: 17, color: colors.text, fontWeight: "600" },
   watch: { color: colors.primary, fontWeight: "700", fontSize: 16 },
   pending: { color: colors.textMuted, fontSize: 15 },

@@ -9,11 +9,13 @@ import {
 } from "react-native";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
 import { GradientBG } from "@/components/GradientBG";
+import { IconTile } from "@/components/IconTile";
 import { StatusBadge } from "@/components/StatusBadge";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
-import { colors, radius, shadow, spacing } from "@/lib/theme";
+import { colors, ctaGradient, radius, shadow, spacing } from "@/lib/theme";
 import type { JobWithProperty } from "@/lib/types";
 
 export default function CleanerHome() {
@@ -52,9 +54,21 @@ export default function CleanerHome() {
     <GradientBG>
     <View style={[styles.flex, { paddingTop: insets.top + spacing.md }]}>
       <View style={styles.header}>
-        <View>
-          <Text style={styles.hello}>Hi {profile?.full_name ?? "there"} 👋</Text>
-          <Text style={styles.sub}>Tap a job to start cleaning</Text>
+        <View style={styles.headerLeft}>
+          <LinearGradient
+            colors={ctaGradient}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.avatar}
+          >
+            <Text style={styles.avatarText}>
+              {(profile?.full_name ?? "?").trim().charAt(0).toUpperCase()}
+            </Text>
+          </LinearGradient>
+          <View>
+            <Text style={styles.hello}>Hi {profile?.full_name ?? "there"} 👋</Text>
+            <Text style={styles.sub}>Tap a job to start cleaning</Text>
+          </View>
         </View>
         <Pressable onPress={signOut} hitSlop={10}>
           <Text style={styles.signout}>Log out</Text>
@@ -80,12 +94,18 @@ export default function CleanerHome() {
             style={({ pressed }) => [styles.card, pressed && styles.pressed]}
             onPress={() => router.push(`/(cleaner)/job/${item.id}/record`)}
           >
-            <Text style={styles.cardTitle}>
-              {item.property?.name ?? "Cleaning job"}
-            </Text>
-            {item.property?.address ? (
-              <Text style={styles.cardAddr}>{item.property.address}</Text>
-            ) : null}
+            <View style={styles.cardTop}>
+              <IconTile glyph="🧽" size={48} />
+              <View style={styles.cardText}>
+                <Text style={styles.cardTitle}>
+                  {item.property?.name ?? "Cleaning job"}
+                </Text>
+                {item.property?.address ? (
+                  <Text style={styles.cardAddr}>📍 {item.property.address}</Text>
+                ) : null}
+              </View>
+              <Text style={styles.chevron}>›</Text>
+            </View>
             <View style={styles.cardFooter}>
               <StatusBadge status={item.status} />
               <Text style={styles.cta}>Start ▶</Text>
@@ -122,8 +142,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     marginBottom: spacing.md,
   },
-  hello: { fontSize: 26, fontWeight: "800", color: colors.text },
-  sub: { fontSize: 15, color: colors.textMuted, marginTop: 2 },
+  headerLeft: { flexDirection: "row", alignItems: "center", gap: spacing.md },
+  avatar: {
+    width: 46,
+    height: 46,
+    borderRadius: 23,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  avatarText: { color: "#fff", fontSize: 20, fontWeight: "800" },
+  hello: { fontSize: 24, fontWeight: "800", color: colors.text },
+  sub: { fontSize: 14, color: colors.textMuted, marginTop: 2 },
   signout: { color: colors.primary, fontWeight: "600", fontSize: 15 },
   list: { paddingHorizontal: spacing.lg, paddingBottom: spacing.xl, gap: spacing.md },
   card: {
@@ -135,8 +164,11 @@ const styles = StyleSheet.create({
     ...shadow.card,
   },
   pressed: { opacity: 0.85 },
-  cardTitle: { fontSize: 22, fontWeight: "800", color: colors.text },
-  cardAddr: { fontSize: 15, color: colors.textMuted, marginTop: 2 },
+  cardTop: { flexDirection: "row", alignItems: "center", gap: spacing.md },
+  cardText: { flex: 1 },
+  chevron: { color: colors.textMuted, fontSize: 30, fontWeight: "300", marginTop: -4 },
+  cardTitle: { fontSize: 20, fontWeight: "800", color: colors.text },
+  cardAddr: { fontSize: 14, color: colors.textMuted, marginTop: 3 },
   cardFooter: {
     flexDirection: "row",
     alignItems: "center",
